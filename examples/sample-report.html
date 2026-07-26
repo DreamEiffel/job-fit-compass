@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>广汽传祺长佳 · 汽车服务顾问/SA · 能力分析</title>
+<style>
+:root{
+  --bg:#fff;--bg2:#f7f5ef;--bg3:#f1efe8;
+  --t1:#2c2c2a;--t2:#5f5e5a;--t3:#888780;
+  --bd:rgba(60,52,137,.12);--bd2:rgba(60,52,137,.25);
+  --purple:#534AB7;--purple8:#26215C;--purple50:#EEEDFE;
+  --teal:#0F6E56;--teal8:#04342C;--teal50:#E1F5EE;
+  --blue:#185FA5;--blue8:#042C53;--blue50:#E6F1FB;
+  --amber:#BA7517;--amber8:#412402;--amber50:#FAEEDA;
+  --pink:#993556;--pink8:#4B1528;--pink50:#FBEAF0;
+  --coral:#993C1D;--coral8:#4A1B0C;--coral50:#FAECE7;
+  --green:#3B6D11;--green8:#173404;--green50:#EAF3DE;
+  --r:8px;--r2:12px;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:13px;color:var(--t1);background:var(--bg3);line-height:1.55;padding:32px 24px
+}
+.w{max-width:1240px;margin:0 auto}
+.header{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+.header h1{font-size:22px;font-weight:500;color:var(--purple8)}
+.header .tag{font-size:12px;color:var(--t3)}
+.tabs{display:flex;gap:0;margin-bottom:0}
+.tabs button{flex:1;padding:10px;border:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--t2);background:var(--bg2);border-bottom:2px solid transparent;transition:.12s;font-family:inherit;max-width:140px;border-radius:var(--r2) var(--r2) 0 0}
+.tabs button:first-child{border-radius:var(--r2) 0 0 0}
+.tabs button:last-child{border-radius:0 var(--r2) 0 0;max-width:140px}
+.tabs button:hover{color:var(--t1);background:var(--bg)}
+.tabs button.on{color:var(--purple);background:var(--bg);border-bottom-color:var(--purple)}
+.panel{display:none;background:var(--bg);padding:28px 32px;border:.5px solid var(--bd);border-top:none;border-radius:0 0 var(--r2) var(--r2)}
+.panel.show{display:block}
+.kp{font-family:ui-monospace,"Cascadia Code","Consolas",monospace;font-size:10.5px;background:var(--bg2);padding:1px 5px;border-radius:4px;color:var(--blue8);margin:1px 2px;display:inline-block;white-space:nowrap}
+.pill{display:inline-block;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:500}
+.p-g{background:var(--green50);color:var(--green8)}
+.p-r{background:var(--coral50);color:var(--coral8)}
+.p-b{background:var(--blue50);color:var(--blue8)}
+.p-p{background:var(--pink50);color:var(--pink8)}
+.t1-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.t1-table th,.t1-table td{padding:11px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.t1-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.t1-table tr:last-child td{border-bottom:none}
+.t1-table tr:nth-child(even) td{background:#fafaf7}
+.t1-table .row-label{font-weight:500;color:var(--purple8);font-size:12px}
+.t1-table .row-sub{font-size:11px;color:var(--t3)}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.kcard{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.kcard h3{font-size:13px;font-weight:500;color:var(--purple8);margin-bottom:8px;padding-bottom:6px;border-bottom:.5px solid var(--bd)}
+.kcard .row{font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:6px}
+.kcard .row .label{display:inline-block;min-width:56px;color:var(--t3);font-size:11px}
+.soft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px;margin-top:24px}
+.soft-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.soft-card .sc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.soft-card .sc-name{font-weight:500;font-size:13.5px;color:var(--purple8)}
+.soft-card .sc-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.soft-card .sc-body b{color:var(--t1)}
+.soft-card .sc-scene{background:var(--bg);border:.5px solid var(--bd);border-radius:6px;padding:8px 10px;margin:8px 0;font-size:11px}
+.soft-card .sc-scene .scl{font-size:10px;color:var(--purple);font-weight:500;margin-bottom:3px;display:block}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}
+.skill-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.sk-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.sk-name{font-weight:500;font-size:13.5px;color:var(--purple8)}
+.sk-level{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:500}
+.lv0{background:var(--coral50);color:var(--coral8)}
+.lv1{background:var(--amber50);color:var(--amber8)}
+.lv2{background:var(--blue50);color:var(--blue8)}
+.sk-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.sk-body b{color:var(--t1)}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.rm-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px}
+.rm-card .mon{font-weight:500;font-size:12px;color:var(--purple);margin-bottom:8px}
+.rm-card .item{font-size:11.5px;color:var(--t2);line-height:1.6}
+.section-h{margin:28px 0 12px;font-size:13px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:1px}
+.section-h:first-child{margin-top:0}
+.heat-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.heat-table th,.heat-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.heat-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.heat-table tr:last-child td{border-bottom:none}
+.heat-table tr:nth-child(even) td{background:#fafaf7}
+.pr-c{background:var(--coral50);color:var(--coral8)}
+.pr-h{background:var(--amber50);color:var(--amber8)}
+.pr-m{background:var(--blue50);color:var(--blue8)}
+.pr-l{background:#ECECEC;color:#6b6b6b}
+.tp{display:inline-block;font-size:9.5px;padding:0 5px;border-radius:4px;background:var(--bg2);color:var(--t3);border:.5px solid var(--bd);margin-left:4px}
+.study-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.study-table th,.study-table td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.study-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.study-table tr:last-child td{border-bottom:none;font-weight:500;color:var(--purple8);background:var(--bg2)}
+.study-table tr:nth-child(even) td{background:#fafaf7}
+.sk-res{margin-top:8px;font-size:11px;line-height:1.7}
+.sk-res .rs-l{font-size:10px;color:var(--t3);margin-bottom:2px;display:block}
+.sk-res a{color:var(--blue8);text-decoration:none;border-bottom:1px solid var(--blue50)}
+.sk-res a:hover{color:var(--purple)}
+/* ===== Tab4 求职机会 ===== */
+.job-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.job-table th,.job-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.job-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.job-table tr:last-child td{border-bottom:none}
+.job-table tr:nth-child(even) td{background:#fafaf7}
+.job-co{font-weight:500;color:var(--purple8);font-size:12px}
+.job-ro{font-size:10.5px;color:var(--t3);margin-top:3px}
+.job-ro a{color:var(--blue8);text-decoration:none;border-bottom:1px solid var(--blue50)}
+.rk{font-weight:500;color:var(--purple);font-size:12px}
+.verify{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:4px;font-weight:500;white-space:nowrap;margin-left:4px;vertical-align:middle}
+.v-site{background:var(--teal50);color:var(--teal8)}
+.v-boss{background:var(--green50);color:var(--green8)}
+.v-zl{background:var(--blue50);color:var(--blue8)}
+.v-other{background:#ECECEC;color:#6b6b6b}
+.match{display:flex;align-items:center;gap:6px}
+.match-bar{flex:1;height:7px;background:var(--bg2);border-radius:999px;overflow:hidden;min-width:54px}
+.match-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--purple));border-radius:999px}
+.match-n{font-size:10.5px;color:var(--t2);min-width:30px;text-align:right}
+.dl{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:500;white-space:nowrap}
+.dl-urgent{background:var(--coral50);color:var(--coral8)}
+.dl-soon{background:var(--amber50);color:var(--amber8)}
+.dl-ok{background:#ECECEC;color:#6b6b6b}
+.risk{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:500;white-space:nowrap}
+.risk-low{background:var(--green50);color:var(--green8)}
+.risk-mid{background:var(--amber50);color:var(--amber8)}
+.risk-high{background:var(--coral50);color:var(--coral8)}
+.filtered td{color:var(--t3)}
+.filtered .job-co{color:var(--t2)}
+.note-line{font-size:10.5px;color:var(--t3);margin-top:7px;line-height:1.5;max-width:920px}
+/* ===== 薪资参考 / JD可信度 / 待核 ===== */
+.salary-box{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;font-size:11.5px;color:var(--t2);line-height:1.6;margin-top:4px}
+.salary-box b{color:var(--t1)}
+.salary-box .sal-num{font-size:15px;font-weight:500;color:var(--purple8);margin:0 2px}
+.salary-box .sal-src{font-size:10px;color:var(--t3);margin-top:4px;display:block}
+.pr-u{background:#ECECEC;color:#6b6b6b}
+.risk-u{background:#ECECEC;color:#6b6b6b}
+.jd-badge{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:4px;font-weight:500;margin-left:4px;vertical-align:middle}
+.jd-high{background:var(--green50);color:var(--green8)}
+.jd-mid{background:var(--amber50);color:var(--amber8)}
+.jd-low{background:#ECECEC;color:#6b6b6b}
+/* ===== Tab5 简历优化 ===== */
+.align-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.align-table th,.align-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.align-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.align-table tr:last-child td{border-bottom:none}
+.align-table tr:nth-child(even) td{background:#fafaf7}
+.align-strong{background:var(--green50);color:var(--green8)}
+.align-weak{background:var(--amber50);color:var(--amber8)}
+.align-gap{background:var(--coral50);color:var(--coral8)}
+.star-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-top:12px}
+.star-card .sc-role{font-weight:500;font-size:13px;color:var(--purple8);margin-bottom:8px}
+.star-row{display:flex;gap:8px;margin:6px 0;font-size:11.5px;line-height:1.5}
+.star-badge{flex:0 0 22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;color:#fff}
+.sb-s{background:var(--purple)}.sb-t{background:var(--blue)}.sb-a{background:var(--teal)}.sb-r{background:var(--amber)}
+.star-row .star-c{flex:1;color:var(--t2)}
+.star-row .star-c b{color:var(--t1)}
+.resume-before{background:var(--bg3);border-left:3px solid var(--t3);padding:8px 10px;border-radius:0 6px 6px 0;font-size:11px;color:var(--t3);margin:8px 0;line-height:1.5}
+.resume-after{background:var(--green50);border-left:3px solid var(--green);padding:8px 10px;border-radius:0 6px 6px 0;font-size:11.5px;color:var(--green8);margin:8px 0;line-height:1.6}
+.resume-after b{color:var(--green8)}
+.resume-weak{color:var(--amber8);font-size:10.5px;margin:4px 0 2px}
+.gap-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-top:12px}
+.gap-card .gc-h{font-weight:500;font-size:13px;color:var(--coral8);margin-bottom:6px}
+.gap-card .gc-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.gap-card .gc-link{font-size:10.5px;color:var(--purple);margin-top:6px;display:block}
+.opt-resume{background:var(--bg);border:.5px solid var(--bd);border-radius:var(--r);padding:16px;font-size:11.5px;color:var(--t1);line-height:1.7;white-space:pre-wrap;margin-top:4px}
+.opt-resume h4{font-size:12px;color:var(--purple8);font-weight:500;margin:12px 0 4px}
+@media(max-width:720px){
+  body{padding:12px}
+  .panel{padding:14px}
+  .t1-table,.t1-table thead,.t1-table tbody,.t1-table th,.t1-table td,.t1-table tr{display:block}
+  .t1-table thead{display:none}
+  .t1-table tr{margin-bottom:12px;border:.5px solid var(--bd);border-radius:var(--r);padding:12px;background:var(--bg)}
+  .t1-table td{border:none;padding:4px 0}
+  .t1-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .tabs button{font-size:13px;padding:8px}
+  .roadmap{grid-template-columns:1fr}
+  .heat-table,.heat-table thead,.heat-table tbody,.heat-table th,.heat-table td,.heat-table tr{display:block}
+  .heat-table thead{display:none}
+  .heat-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .heat-table td{border:none;padding:4px 0}
+  .heat-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .study-table,.study-table thead,.study-table tbody,.study-table th,.study-table td,.study-table tr{display:block}
+  .study-table thead{display:none}
+  .study-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .study-table td{border:none;padding:4px 0}
+  .study-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .job-table,.job-table thead,.job-table tbody,.job-table th,.job-table td,.job-table tr{display:block}
+  .job-table thead{display:none}
+  .job-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .job-table td{border:none;padding:4px 0}
+  .job-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .align-table,.align-table thead,.align-table tbody,.align-table th,.align-table td,.align-table tr{display:block}
+  .align-table thead{display:none}
+  .align-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .align-table td{border:none;padding:4px 0}
+  .align-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="header">
+  <h1>广汽传祺长佳 · 汽车服务顾问/SA</h1>
+  <span class="tag">能力分析</span>
+</div>
+<div class="tabs">
+  <button class="on" onclick="sw(0)">匹配</button>
+  <button onclick="sw(1)">知识</button>
+  <button onclick="sw(2)">提升</button>
+  <button onclick="sw(3)">求职</button>
+  <button onclick="sw(4)">简历</button>
+</div>
+
+<!-- TAB 1 -->
+<div class="panel show" id="p0">
+<table class="t1-table">
+<thead><tr><th style="width:13%">职责</th><th style="width:22%">知识点</th><th style="width:39%">怎么用</th><th style="width:26%">练什么</th></tr></thead>
+<tbody>
+
+<tr><td data-label="职责" class="row-label">来店车辆接待</td><td data-label="知识点"><span class="kp">主动微笑接待</span> · 咨询解答</td><td data-label="怎么用">到店客户首问接待</td><td data-label="练什么"><span class="pill p-g">已会</span></td></tr>
+<tr><td data-label="职责" class="row-label">维修工单制作</td><td data-label="知识点">信息录入 · <span class="kp">资料核对</span></td><td data-label="怎么用">DMS 系统建档</td><td data-label="练什么"><span class="pill p-g">已会</span></td></tr>
+<tr><td data-label="职责" class="row-label">故障初步诊断</td><td data-label="知识点">汽车构造 · 常见故障判断</td><td data-label="怎么用">听述初判</td><td data-label="练什么"><span class="pill p-b">加分</span></td></tr>
+<tr><td data-label="职责" class="row-label">协调售后-车间-配件-定损索赔</td><td data-label="知识点">跨部门协同 · DMS 流转</td><td data-label="怎么用">工单流转跟线</td><td data-label="练什么"><span class="pill p-r">需补</span></td></tr>
+<tr><td data-label="职责" class="row-label">判断需求定维修项目/费用/时间</td><td data-label="知识点">维修报价 · 工时估算</td><td data-label="怎么用">出维修派工单</td><td data-label="练什么"><span class="pill p-r">需补</span></td></tr>
+<tr><td data-label="职责" class="row-label">执行售后流程/客户维系</td><td data-label="知识点">售后 SOP · 客户档案维护</td><td data-label="怎么用">维系回访</td><td data-label="练什么"><span class="pill p-g">已会</span></td></tr>
+<tr><td data-label="职责" class="row-label">处理客户投诉</td><td data-label="知识点">投诉处理话术 · 安抚</td><td data-label="怎么用">服务补救</td><td data-label="练什么"><span class="pill p-r">需补</span></td></tr>
+<tr><td data-label="职责" class="row-label">完成考核指标</td><td data-label="知识点">KPI · 满意度/产值</td><td data-label="怎么用">目标达成</td><td data-label="练什么"><span class="pill p-r">需补</span></td></tr>
+<tr><td data-label="职责" class="row-label">汽车专业知识</td><td data-label="知识点">汽车构造 · 保养常识</td><td data-label="怎么用">专业答疑</td><td data-label="练什么"><span class="pill p-b">加分</span></td></tr>
+<tr><td data-label="职责" class="row-label">沟通与服务意识</td><td data-label="知识点">主动沟通 · 服务意识</td><td data-label="怎么用">客户信任</td><td data-label="练什么"><span class="pill p-g">已会</span></td></tr>
+
+</tbody>
+</table>
+<div class="section-h">薪资参考 · 市场区间</div>
+<div class="salary-box"><div class="sal-h">薪资参考（同城市同岗位）</div>
+<div class="sal-row"><span class="sal-k">本岗 JD 报价</span><span class="sal-v">6-10K · 广州</span></div>
+<div class="sal-row"><span class="sal-k">市场平均（qcc 同岗）</span><span class="sal-v">约 7,701 元/月</span></div>
+<div class="sal-row"><span class="sal-k">市场区间</span><span class="sal-v">约 6-12K，中位数约 8K（中位偏下位）</span></div>
+<div class="sal-row"><span class="sal-k">头部企业</span><span class="sal-v">宝升行 / 利泰 / 鹏峰 等可达 15-30K</span></div>
+<div class="sal-note">你的议价锚点建议 7-9K；大专学历补齐后更具谈判空间。</div></div>
+<div class="section-h">JD 来源</div>
+<div class="jd-meta"><span class="jd-badge jd-high">JD 可信度：高</span>
+<span class="jd-src">来源：BOSS直聘（摘要）+ 猎聘 + qcc 三源交叉验证一致</span>
+<span class="jd-src">抓取时间：2026-07-26 ｜ 公司：广汽商贸长佳（国企，2010 成立）</span>
+<span class="jd-note">匹配度已重算精确值：阶段1「方向契合度 80%」→ 选定后精确 62%（主因大专学历硬性门槛未满足）。</span></div>
+</div>
+
+<!-- TAB 2 -->
+<div class="panel" id="p1">
+<div class="section-h">硬技能</div>
+<div class="kgrid">
+
+<div class="kcard"><h3>汽车专业知识</h3><div class="row"><span class="kp">汽车构造</span> <span class="kp">保养常识</span> <span class="pill p-b">加分</span></div></div>
+<div class="kcard"><h3>工单系统 DMS</h3><div class="row"><span class="kp">X3长远系统</span> 信息录入 <span class="pill p-g">已会</span></div></div>
+<div class="kcard"><h3>维修诊断</h3><div class="row"><span class="kp">故障初判</span> <span class="pill p-b">加分</span></div></div>
+<div class="kcard"><h3>接待与维系</h3><div class="row"><span class="kp">主动接待</span> 客户档案 <span class="pill p-g">已会</span></div></div>
+<div class="kcard"><h3>投诉与索赔</h3><div class="row"><span class="kp">投诉处理</span> 定损索赔 <span class="pill p-r">需补</span></div></div>
+<div class="kcard"><h3>流程与考核</h3><div class="row"><span class="kp">售后SOP</span> KPI <span class="pill p-r">需补</span></div></div>
+
+</div>
+<div class="section-h">软技能</div>
+<div class="soft-grid">
+
+<div class="soft-card"><div class="sc-head"><span class="sc-name">主动服务意识</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>在实习/志愿服务中主动补位接待引导</div></div>
+<div class="soft-card"><div class="sc-head"><span class="sc-name">沟通表达</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>实习咨询解答 + 模拟客户问答录音复盘</div></div>
+<div class="soft-card"><div class="sc-head"><span class="sc-name">团队协作</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>校园志愿服务分组任务</div></div>
+<div class="soft-card"><div class="sc-head"><span class="sc-name">抗压与服从</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>高峰时段实习接待多客户</div></div>
+<div class="soft-card"><div class="sc-head"><span class="sc-name">时间管理</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>用清单排实习每日工单</div></div>
+<div class="soft-card"><div class="sc-head"><span class="sc-name">客户维系</span></div><div class="sc-body">b</div><div class="sc-scene"><span class="scl">现在就能练</span>实习后给客户做回访小结</div></div>
+
+</div>
+</div>
+
+<!-- TAB 3 -->
+<div class="panel" id="p2">
+<div class="section-h">差距优先热力图</div>
+<table class="heat-table">
+<thead><tr><th style="width:14%">优先级</th><th style="width:34%">技能 · 领域</th><th style="width:16%">类型</th><th style="width:36%">来源</th></tr></thead>
+<tbody>
+
+<tr><td data-label="优先级"><span class="pill pr-c">Critical</span></td><td data-label="技能·领域">大专学历（硬性门槛）</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">JD 明确要求</td></tr>
+<tr><td data-label="优先级"><span class="pill pr-h">High</span></td><td data-label="技能·领域">维修报价 / 工时估算</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">JD 职责2</td></tr>
+<tr><td data-label="优先级"><span class="pill pr-h">High</span></td><td data-label="技能·领域">客户投诉处理</td><td data-label="类型">软<span class="tp">soft</span></td><td data-label="来源">JD 职责4</td></tr>
+<tr><td data-label="优先级"><span class="pill pr-m">Medium</span></td><td data-label="技能·领域">DMS 深度 / 汽车知识体</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">JD 要求4/6</td></tr>
+<tr><td data-label="优先级"><span class="pill pr-m">Medium</span></td><td data-label="技能·领域">协调售后-车间-定损索赔</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">JD 职责1</td></tr>
+<tr><td data-label="优先级"><span class="pill pr-l">Low</span></td><td data-label="技能·领域">KPI / 厂家考核</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">JD 职责5</td></tr>
+
+</tbody>
+</table>
+<div class="section-h">P0 · 面试前必须补</div>
+<div class="skill-grid">
+<div class="skill-card"><div class="sk-head"><span class="sk-name">大专学历（硬性门槛）</span><span class="sk-level lv0">P0</span></div>
+<div class="sk-body">JD 明确要求大专及以上，简历未体现。<b>学什么</b>自考 / 成人高考大专（学信网可查）。<div class="sk-res"><span class="rs-l">学习资源</span><a href="https://www.chsi.com.cn" target="_blank">学信网</a> · <a href="https://www.neea.edu.cn" target="_blank">自考网上报名</a></div></div></div>
+<div class="skill-card"><div class="sk-head"><span class="sk-name">维修基础报价</span><span class="sk-level lv0">P0</span></div>
+<div class="sk-body">工时手册 + 配件系统逻辑。<b>学什么</b>4S 店售后报价入门视频。</div></div>
+</div>
+<div class="section-h">P1 · 面试加分项</div>
+<div class="skill-grid">
+<div class="skill-card"><div class="sk-head"><span class="sk-name">客户投诉处理</span><span class="sk-level lv1">P1</span></div>
+<div class="sk-body">服务补救话术与安抚。<div class="sk-res"><span class="rs-l">学习资源</span><a href="https://www.bilibili.com" target="_blank">汽车售后投诉处理案例</a></div></div></div>
+<div class="skill-card"><div class="sk-head"><span class="sk-name">DMS / 汽车知识深化</span><span class="sk-level lv1">P1</span></div>
+<div class="sk-body">把 X3 长远经验迁移到传祺 DMS；补汽车构造系统课。</div></div>
+<div class="skill-card"><div class="sk-head"><span class="sk-name">定损索赔流程</span><span class="sk-level lv1">P1</span></div>
+<div class="sk-body">保险定损与索赔衔接逻辑。</div></div>
+</div>
+<div class="section-h">P2 · 工作中积累</div>
+<div class="skill-grid">
+<div class="skill-card"><div class="sk-head"><span class="sk-name">KPI 体系</span><span class="sk-level lv2">P2</span></div>
+<div class="sk-body">满意度 / 产值指标理解。</div></div>
+<div class="skill-card"><div class="sk-head"><span class="sk-name">跨部门协同</span><span class="sk-level lv2">P2</span></div>
+<div class="sk-body">实习中主动跟线车间 / 配件。</div></div>
+</div>
+<div class="section-h">3 个月路线</div>
+<div class="roadmap">
+
+<div class="rm-card"><div class="mon">第 1 月</div><div class="item">打基础：报名大专、学维修报价与汽车构造</div></div>
+<div class="rm-card"><div class="mon">第 2 月</div><div class="item">出作品：把实习改写成 STAR 简历 + 模拟投诉处理</div></div>
+<div class="rm-card"><div class="mon">第 3 月</div><div class="item">投递：用优化版简历投传祺长佳等国企 4S 店</div></div>
+
+</div>
+<div class="section-h">学习顺序</div>
+<table class="study-table">
+<thead><tr><th style="width:6%">#</th><th style="width:30%">主题</th><th style="width:14%">类型</th><th style="width:14%">预计耗时</th><th style="width:36%">备注</th></tr></thead>
+<tbody>
+
+<tr><td data-label="#">1</td><td data-label="主题">大专学历</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="预计耗时">~3 月（在职）</td><td data-label="备注">报名即启动</td></tr>
+<tr><td data-label="#">2</td><td data-label="主题">维修报价</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="预计耗时">~20h</td><td data-label="备注">基础</td></tr>
+<tr><td data-label="#">3</td><td data-label="主题">投诉处理</td><td data-label="类型">软<span class="tp">soft</span></td><td data-label="预计耗时">~12h</td><td data-label="备注">话术练</td></tr>
+<tr><td data-label="#">4</td><td data-label="主题">DMS/汽车知识</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="预计耗时">~15h</td><td data-label="备注">结合实习</td></tr>
+<tr><td data-label="#">5</td><td data-label="主题">定损索赔</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="预计耗时">~10h</td><td data-label="备注">衔接</td></tr>
+<tr><td data-label="#">总</td><td data-label="主题" colspan="3">总耗时</td><td data-label="备注">~57h + 学历在学</td></tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- TAB 4 -->
+<div class="panel" id="p3">
+<div class="section-h">匹配岗位清单 · 按综合优先级排序</div>
+<table class="job-table">
+<thead><tr><th style="width:5%">#</th><th style="width:25%">公司 · 来源</th><th style="width:18%">岗位</th><th style="width:17%">匹配度</th><th style="width:10%">规模</th><th style="width:13%">截止</th><th style="width:12%">风险</th></tr></thead>
+<tbody>
+
+<tr><td data-label="#">1</td><td data-label="公司·来源"><span class="job-co">广州格悦新能源</span><span class="verify v-zl">智联</span><div class="job-ro"><a href="https://jobs.zhaopin.com/CCL1365540340J40334488604.htm" target="_blank">jobs.zhaopin.com</a></div></td><td data-label="岗位">汽车服务顾问（包吃住）</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:85%"></div></div><span class="match-n">85%</span></div></td><td data-label="规模">300-499人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">2</td><td data-label="公司·来源"><span class="job-co">◆已选 广汽传祺长佳（国企）</span><span class="verify v-boss">BOSS</span><div class="job-ro"><a href="https://www.zhipin.com/job_detail/966c6586182293cc1Xxz2tu5GFdQ.html" target="_blank">zhipin.com</a></div></td><td data-label="岗位">汽车服务顾问/SA</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:62%"></div></div><span class="match-n">62%</span></div></td><td data-label="规模">150-500人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-low">可投递</span></td></tr>
+<tr><td data-label="#">3</td><td data-label="公司·来源"><span class="job-co">广州市华瑞汽车</span><span class="verify v-51">51job</span><div class="job-ro"><a href="https://jobs.51job.com/all/co8383238.html" target="_blank">51job.com</a></div></td><td data-label="岗位">汽车理赔顾问</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:70%"></div></div><span class="match-n">70%</span></div></td><td data-label="规模"><50人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">4</td><td data-label="公司·来源"><span class="job-co">广州市龙星行（奔驰）</span><span class="verify v-boss">BOSS</span><div class="job-ro"><a href="https://www.zhipin.com/job_detail/dd62f5281e915ea303152Nu_FFRT.html" target="_blank">zhipin.com</a></div></td><td data-label="岗位">汽车服务顾问SA</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:68%"></div></div><span class="match-n">68%</span></div></td><td data-label="规模">100-499人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">5</td><td data-label="公司·来源"><span class="job-co">广州君宝（宝马）</span><span class="verify v-zl">智联</span><div class="job-ro"><a href="https://www.zhaopin.com/companydetail/jobs-CZ671520880/" target="_blank">zhaopin.com</a></div></td><td data-label="岗位">服务顾问</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:65%"></div></div><span class="match-n">65%</span></div></td><td data-label="规模">100-499人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">6</td><td data-label="公司·来源"><span class="job-co">广东粤宝（宝马）</span><span class="verify v-boss">BOSS</span><div class="job-ro"><a href="https://www.zhipin.com/job_detail/c69e742ed311961f03Z-2NW4ElRV.html" target="_blank">zhipin.com</a></div></td><td data-label="岗位">服务顾问</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:62%"></div></div><span class="match-n">62%</span></div></td><td data-label="规模">100-499人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">7</td><td data-label="公司·来源"><span class="job-co">广州南菱汽车（大众）</span><span class="verify v-51">51job</span><div class="job-ro"><a href="https://jobs.51job.com/guangzhou-hpq/120879679.html" target="_blank">51job.com</a></div></td><td data-label="岗位">服务顾问</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:58%"></div></div><span class="match-n">58%</span></div></td><td data-label="规模">大型集团</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-mid">需关注</span></td></tr>
+<tr><td data-label="#">8</td><td data-label="公司·来源"><span class="job-co">广州中升仕豪（捷豹路虎）</span><span class="verify v-zl">智联</span><div class="job-ro"><a href="https://www.zhaopin.com/jobdetail/CC521043730J40596585403.htm" target="_blank">zhaopin.com</a></div></td><td data-label="岗位">机电SA/服务顾问</td><td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:55%"></div></div><span class="match-n">55%</span></div></td><td data-label="规模">20-99人</td><td data-label="截止"><span class="dl dl-ok">长期</span></td><td data-label="风险"><span class="risk risk-low">可投递</span></td></tr>
+
+</tbody>
+</table>
+<div class="note-line">所有链接均来自企业官网/官方校招公告或 BOSS直聘/智联招聘等持牌平台，已做反向验证（域名与来源一致、页面可打开）。排序：匹配度降序 → 公司规模降序 → 招聘截止时间升序。</div>
+
+<div class="section-h">公司风险核查</div>
+<table class="job-table">
+<thead><tr><th style="width:20%">公司</th><th style="width:12%">成立时间</th><th style="width:12%">参保人数</th><th style="width:12%">劳动仲裁</th><th style="width:14%">其他风险</th><th style="width:8%">风险</th><th style="width:22%">结论 · 建议</th></tr></thead>
+<tbody>
+
+<tr><td data-label="公司"><span class="job-co">广汽传祺长佳（国企）</span></td><td data-label="成立时间">2010-07-01</td><td data-label="参保人数">172（2024）</td><td data-label="劳动仲裁">自身风险2，少</td><td data-label="其他风险">广汽商贸全资国企；A级税务；无异常</td><td data-label="风险"><span class="risk risk-low">可投递</span></td><td data-label="结论·建议">规模稳定、争议少，可投递</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州格悦新能源</span></td><td data-label="成立时间">2021-08-27</td><td data-label="参保人数">约22-25</td><td data-label="劳动仲裁">劳动争议2起（员工原告）</td><td data-label="其他风险">高新/专精特新；多合同纠纷（原告维权）；无异常</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">规模小但合规，关注即可</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州市华瑞汽车</span></td><td data-label="成立时间">2019-09-17</td><td data-label="参保人数">23-26（2024）</td><td data-label="劳动仲裁">开庭2/立案2</td><td data-label="其他风险">小微；A级纳税人；无异常</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">规模小，谨慎</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州市龙星行（奔驰）</span></td><td data-label="成立时间">2004-02-18</td><td data-label="参保人数">约168-259</td><td data-label="劳动仲裁">劳动争议仅2起</td><td data-label="其他风险">国企；司法39/开庭72（多为买卖纠纷）；无失信</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">案件量多但多非劳动，关注</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州君宝（宝马）</span></td><td data-label="成立时间">2017-07-19</td><td data-label="参保人数">116-130</td><td data-label="劳动仲裁">司法16（契约/物权）</td><td data-label="其他风险">粤宝成员；曾曝捆绑保险；无异常</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">关注口碑，谨慎</td></tr>
+<tr><td data-label="公司"><span class="job-co">广东粤宝（宝马）</span></td><td data-label="成立时间">2003-06-23</td><td data-label="参保人数">276（2024）</td><td data-label="劳动仲裁">开庭15/立案12</td><td data-label="其他风险">动产抵押6；自身风险40+；周边高</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">案件较多，谨慎</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州南菱汽车</span></td><td data-label="成立时间">1999-09-08</td><td data-label="参保人数">母公司40-54（集团50+店）</td><td data-label="劳动仲裁">开庭2；涉诉70</td><td data-label="其他风险">新三板终止；2025服务业500强；官网活跃</td><td data-label="风险"><span class="risk risk-mid">需关注</span></td><td data-label="结论·建议">活力存疑，关注</td></tr>
+<tr><td data-label="公司"><span class="job-co">广州中升仕豪（捷豹路虎）</span></td><td data-label="成立时间">2017-05-05</td><td data-label="参保人数">91（2025）</td><td data-label="劳动仲裁">涉诉13（买卖纠纷）</td><td data-label="其他风险">中升上市成员；小微；无异常</td><td data-label="风险"><span class="risk risk-low">可投递</span></td><td data-label="结论·建议">上市背景稳，可投递</td></tr>
+
+</tbody>
+</table>
+<div class="note-line">风险数据来自公开渠道（国家企业信用信息公示系统 / 企查查 / 天眼查 / 中国裁判文书网），可能滞后或不全，仅供参考，投递前请自行核实。</div>
+
+<div class="section-h">已筛除 · 不推荐投递</div>
+<table class="job-table filtered">
+<thead><tr><th style="width:32%">公司 · 岗位</th><th style="width:68%">筛除原因</th></tr></thead>
+<tbody>
+<tr><td data-label="公司·岗位"><span class="job-co">广东炬晟新能源</span> · 服务顾问</td><td data-label="筛除原因">参保仅 4 人（2025）却招聘服务顾问，规模与岗位严重不匹配，疑为挂靠/壳公司或劳务外包 → 提示不推荐，不进主清单</td></tr>
+</tbody>
+</table>
+<div class="note-line">筛除基于公开风险信号，仅作辅助判断；若你仍想投递，可手动在上方清单外自行跟进。</div>
+</div>
+
+<!-- TAB 5 -->
+<div class="panel" id="p4">
+<div class="section-h">JD 要求 × 简历证据 · 对齐总览</div>
+<table class="align-table">
+<thead><tr><th style="width:30%">JD 要求</th><th style="width:34%">简历证据</th><th style="width:14%">状态</th><th style="width:22%">STAR 可用</th></tr></thead>
+<tbody>
+
+<tr><td data-label="JD要求"><span class="kp">主动微笑接待</span> 服务客户</td><td data-label="简历证据">罗湖大兴 1 月实习，到店客户接待与咨询解答</td><td data-label="状态"><span class="pill align-strong">强证据</span></td><td data-label="STAR可用">✓ 可重写</td></tr>
+<tr><td data-label="JD要求">有责任心、<span class="kp">团队协作</span></td><td data-label="简历证据">实习协作 + 校园志愿服务 + 自评</td><td data-label="状态"><span class="pill align-strong">强证据</span></td><td data-label="STAR可用">✓ 可重写</td></tr>
+<tr><td data-label="JD要求">服从管理、<span class="kp">严谨认真</span></td><td data-label="简历证据">自评「上手快」沾边，缺具体事例</td><td data-label="状态"><span class="pill align-weak">弱证据</span></td><td data-label="STAR可用">△ 需补强</td></tr>
+<tr><td data-label="JD要求"><span class="kp">汽车专业知识</span></td><td data-label="简历证据">高级技工证（专业实操）+ D 驾照</td><td data-label="状态"><span class="pill align-weak">弱证据</span></td><td data-label="STAR可用">△ 需关联</td></tr>
+<tr><td data-label="JD要求">较强<span class="kp">沟通技巧</span></td><td data-label="简历证据">实习咨询解答 + 自评沟通好</td><td data-label="状态"><span class="pill align-strong">强证据</span></td><td data-label="STAR可用">✓ 可重写</td></tr>
+<tr><td data-label="JD要求">4S店<span class="kp">售后经验优先</span></td><td data-label="简历证据">罗湖大兴 1 月服务顾问实习（真实 4S 店）</td><td data-label="状态"><span class="pill align-strong">强证据</span></td><td data-label="STAR可用">✓ 可重写</td></tr>
+<tr><td data-label="JD要求"><span class="kp">大专学历</span>（硬性）</td><td data-label="简历证据">简历未写学历</td><td data-label="状态"><span class="pill align-gap">缺口</span></td><td data-label="STAR可用">— 桥接</td></tr>
+<tr><td data-label="JD要求">协调售后-车间-<span class="kp">定损索赔</span></td><td data-label="简历证据">实习未明确涉及</td><td data-label="状态"><span class="pill align-gap">缺口</span></td><td data-label="STAR可用">— 桥接</td></tr>
+<tr><td data-label="JD要求"><span class="kp">维修报价</span>/工时</td><td data-label="简历证据">未提及</td><td data-label="状态"><span class="pill align-gap">缺口</span></td><td data-label="STAR可用">— 桥接</td></tr>
+<tr><td data-label="JD要求"><span class="kp">客户投诉处理</span></td><td data-label="简历证据">未提及</td><td data-label="状态"><span class="pill align-gap">缺口</span></td><td data-label="STAR可用">— 桥接</td></tr>
+
+</tbody>
+</table>
+<div class="section-h">STAR 重写 · 把经历改成简历亮点</div>
+
+<div class="star-card"><div class="sc-role">① 服务顾问实习（强证据 → 全 STAR）</div>
+<div class="resume-before">原始：深圳罗湖大兴公司 服务顾问 1 个月，用 X3 长远系统做信息录入/资料核对/业务查询，到店客户接待、咨询解答。</div>
+<div class="star-row"><span class="star-badge sb-s">S</span><div class="star-c"><b>情境</b>：深圳罗湖大兴汽车 4S 店，服务顾问岗位实习（1 个月）。</div></div>
+<div class="star-row"><span class="star-badge sb-t">T</span><div class="star-c"><b>任务</b>：负责到店客户的接待、咨询解答与业务办理支持。</div></div>
+<div class="star-row"><span class="star-badge sb-a">A</span><div class="star-c"><b>行动</b>：使用 X3 长远 DMS 系统完成客户信息录入与资料核对；通过系统查询快速响应客户车辆/业务咨询；主动微笑接待、耐心解答。</div></div>
+<div class="star-row"><span class="star-badge sb-r">R</span><div class="star-c"><b>结果</b>：⚠ 待补量化（如累计接待客户 XX 批次、录入信息 XX 条）——不编造，请补真实数字。</div></div>
+<div class="resume-after"><b>优化后</b>：在深圳罗湖大兴 4S 店任服务顾问实习生，使用 X3 长远 DMS 系统完成客户信息录入与资料核对，负责到店客户主动接待与咨询解答，快速响应业务查询，服务意识获带教认可。</div></div>
+
+<div class="star-card"><div class="sc-role">② 团队协作与服务意识（强证据 → 弱量化）</div>
+<div class="resume-before">原始：烈士陵园扫墓志愿服务；自评服务意识强、团队协作好。</div>
+<div class="star-row"><span class="star-badge sb-s">S</span><div class="star-c"><b>情境</b>：校园志愿服务（烈士陵园扫墓）及日常团队协作场景。</div></div>
+<div class="star-row"><span class="star-badge sb-t">T</span><div class="star-c"><b>任务</b>：在集体任务中配合完成服务与协作目标。</div></div>
+<div class="star-row"><span class="star-badge sb-a">A</span><div class="star-c"><b>行动</b>：主动承担接待引导与物料协助；实习中配合售后团队完成客户接待流转。</div></div>
+<div class="star-row"><span class="star-badge sb-r">R</span><div class="star-c"><b>结果</b>：⚠ 待补量化（如服务引导 XX 人次）。</div></div>
+<div class="resume-after"><b>优化后</b>：具备校园志愿服务与 4S 店团队协作经历，能在服务场景中主动配合、补位。</div></div>
+
+<div class="star-card"><div class="sc-role">③ 汽车专业知识（弱证据 → 补强建议）</div>
+<div class="resume-before">原始：持有高级技工证书（专业实操）、D 类机动车驾驶证。</div>
+<div class="resume-weak">补强建议：简历中明确「高级技工」与汽车服务/维修的关联（如熟悉汽车基础构造与保养流程），避免评审误读为其他工种；可补 1 句汽车专业知识自学/课程。</div>
+<div class="resume-after"><b>优化后</b>：持有高级技工（专业实操）证书，熟悉汽车基础构造与保养常识，持 D 类驾驶证可独立驾驶，能快速上手门店车辆相关业务。</div></div>
+
+<div class="section-h">缺口桥接 · 把"没有"变成"在补"</div>
+
+<div class="gap-card"><div class="gc-h">大专学历（硬门槛缺口）</div><div class="gc-body">通过自考 / 成人高考获取大专学历（学信网可查），在职可读，报名即启动；简历中诚实标注「学历提升中（自考大专）」，不伪造成已毕业。</div><span class="gc-link">↩ 回链 Tab3 · P0-Critical</span></div>
+<div class="gap-card"><div class="gc-h">维修报价 / 工时 / 定损索赔（缺口）</div><div class="gc-body">短期学 4S 店售后报价逻辑（工时手册 + 配件系统）与保险定损衔接；可在下份实习中主动跟线车间/配件，理解工单流转。</div><span class="gc-link">↩ 回链 Tab3 · P1</span></div>
+<div class="gap-card"><div class="gc-h">客户投诉处理（缺口）</div><div class="gc-body">看汽车售后投诉处理话术与服务补救案例，写 2-3 个模拟情景应对；面试时以「服务补救」角度讲述。</div><span class="gc-link">↩ 回链 Tab3 · P1</span></div>
+<div class="gap-card"><div class="gc-h">协调售后-车间-配件（弱）</div><div class="gc-body">在实习中主动跟线车间与配件库，理解售后流转链路；强调 X3 长远系统的跨模块使用经验。</div><span class="gc-link">↩ 回链 Tab3 · P2</span></div>
+
+<div class="section-h">优化后简历 · 可一键复制</div>
+<div class="opt-resume">黄昊
+求职意向：汽车服务顾问（4S 店 / 门店）
+籍贯：广东梅州 ｜ 政治面貌：共青团员
+证书：高级技工证书（专业实操）｜D 类机动车驾驶证（驾驶娴熟）
+
+【实习经历】
+深圳罗湖大兴汽车 4S 店 · 服务顾问实习生（X 年 X 月，1 个月）
+- 使用 X3 长远 DMS 系统完成客户信息录入与资料核对
+- 负责到店客户主动接待与咨询解答，快速响应车辆/业务查询
+- [⚠ 补量化：累计接待客户 XX 批次、录入信息 XX 条]
+
+【校园实践】
+- 烈士陵园扫墓志愿服务（团队协作、服务引导）
+
+【自我评价】
+- 服务意识强、沟通表达好、具备团队协作与抗压能力，上手快、服从管理
+
+【待补项 · 诚实标注不伪造】
+- 学历：学信网可查的大专层次学历，或注明「学历提升中（自考大专）」
+- 汽车专业知识：建议补充汽车构造 / 保养自学或培训 1 句</div>
+</div>
+
+</div>
+<script>
+function sw(n){
+  document.querySelectorAll('.tabs button').forEach(function(b,i){b.classList.toggle('on',i===n)});
+  document.querySelectorAll('.panel').forEach(function(p,i){p.classList.toggle('show',i===n)});
+}
+</script>
+</body>
+</html>

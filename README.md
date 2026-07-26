@@ -1,5 +1,12 @@
 # job-fit-compass
 
+<p align="center">
+  <img src="https://img.shields.io/github/license/DreamEiffel/job-fit-compass?style=flat-square" alt="license">
+  <img src="https://img.shields.io/github/last-commit/DreamEiffel/job-fit-compass?style=flat-square" alt="last commit">
+  <img src="https://img.shields.io/github/stars/DreamEiffel/job-fit-compass?style=flat-square" alt="stars">
+  <img src="https://img.shields.io/github/issues/DreamEiffel/job-fit-compass?style=flat-square" alt="issues">
+</p>
+
 > 一个把「诊断能力差距 → 规划学习路线 → 搜靠谱岗位避坑 → 基于 JD 用 STAR 优化简历」串成闭环的求职全流程工具。名字取自 compass（指南针）：既帮你定位方向，也帮你避开坑。
 
 ---
@@ -11,6 +18,8 @@ job-fit-compass 是一款面向求职者的岗位匹配分析技能。输入简�
 
 **English**
 job-fit-compass is a job-fit analysis skill for job seekers. After you input your resume, it first locates a range of suitable positions for you to choose from, then fetches the real JD for in-depth analysis and produces an interactive 5-tab HTML report: ① duty×knowledge mapping; ② full knowledge landscape; ③ improvement plan (gap heatmap + real learning resources); ④ job opportunities (reverse-verified links, sorted by match/scale/deadline, company risk check); ⑤ STAR-based resume optimization. Risk checks focus on founding date, social-security headcount, labor arbitration and other risks; missing data is flagged as "待核", with no fabrication.
+
+> 📊 Want to see it in action? Open the [sample report (GAC Changjia Automobile Service Advisor)](examples/sample-report.html).
 
 ---
 
