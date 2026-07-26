@@ -10,7 +10,7 @@
 job-fit-compass 是一款面向求职者的岗位匹配分析技能。输入简历后，它先定位合适的职位区间供你选择，再抓取真实 JD 做深度分析，生成交互式五页 HTML 报告：①职责×知识点匹配；②岗位知识全景；③提升建议（差距热力图＋真实学习资源）；④求职机会（反向验证真实链接、按匹配度/规模/截止时间排序、公司风险核查）；⑤STAR 法则简历优化。风险核查聚焦成立时间、社保人数、劳动仲裁及其他风险，数据缺失标注"待核"，全程不编造。
 
 **English**
-job-fit-compass is a job-fit analysis skill for job seekers. After you input your resume, it first locates a range of suitable positions for you to choose from, then fetches the real JD for in-depth analysis and produces an interactive 5-tab HTML report: ① duty×knowledge mapping; ② full knowledge landscape; ③ improvement plan (gap heatmap + real learning resources); ④ job opportunities (reverse-verified links, sorted by match/scale/deadline, company risk check); ⑤ STAR-based resume optimization. Risk checks focus on founding date, social-security headcount, labor arbitration and other risks; missing data is flagged as "待核", with no fabrication.
+job-fit-compass is a job-fit analysis skill for job seekers. After you input your resume, it first locates a range of suitable positions for you to choose from, then fetches the real JD for in-depth analysis and produces an interactive 5-tab HTML report: ① duty×knowledge mapping; ② full knowledge landscape; ③ improvement plan (gap heatmap + real learning resources); ④ job opportunities (reverse-verified links, sorted by match/scale/deadline, company risk check); ⑤ STAR-based resume optimization. Risk checks focus on founding date, social-security headcount, labor arbitration and other risks; missing data is flagged as "Pending review", with no fabrication.
 
 ## 功能
 
