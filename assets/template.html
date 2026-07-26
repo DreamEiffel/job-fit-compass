@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title><!-- SECTION: JOB_TITLE -->数据运营<!-- END: JOB_TITLE --> · 能力分析</title>
+<style>
+:root{
+  --bg:#fff;--bg2:#f7f5ef;--bg3:#f1efe8;
+  --t1:#2c2c2a;--t2:#5f5e5a;--t3:#888780;
+  --bd:rgba(60,52,137,.12);--bd2:rgba(60,52,137,.25);
+  --purple:#534AB7;--purple8:#26215C;--purple50:#EEEDFE;
+  --teal:#0F6E56;--teal8:#04342C;--teal50:#E1F5EE;
+  --blue:#185FA5;--blue8:#042C53;--blue50:#E6F1FB;
+  --amber:#BA7517;--amber8:#412402;--amber50:#FAEEDA;
+  --pink:#993556;--pink8:#4B1528;--pink50:#FBEAF0;
+  --coral:#993C1D;--coral8:#4A1B0C;--coral50:#FAECE7;
+  --green:#3B6D11;--green8:#173404;--green50:#EAF3DE;
+  --r:8px;--r2:12px;
+}
+*{box-sizing:border-box;margin:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:13px;color:var(--t1);background:var(--bg3);line-height:1.55;padding:32px 24px
+}
+.w{max-width:1240px;margin:0 auto}
+.header{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+.header h1{font-size:22px;font-weight:500;color:var(--purple8)}
+.header .tag{font-size:12px;color:var(--t3)}
+.tabs{display:flex;gap:0;margin-bottom:0}
+.tabs button{flex:1;padding:10px;border:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--t2);background:var(--bg2);border-bottom:2px solid transparent;transition:.12s;font-family:inherit;max-width:140px;border-radius:var(--r2) var(--r2) 0 0}
+.tabs button:first-child{border-radius:var(--r2) 0 0 0}
+.tabs button:last-child{border-radius:0 var(--r2) 0 0;max-width:140px}
+.tabs button:hover{color:var(--t1);background:var(--bg)}
+.tabs button.on{color:var(--purple);background:var(--bg);border-bottom-color:var(--purple)}
+.panel{display:none;background:var(--bg);padding:28px 32px;border:.5px solid var(--bd);border-top:none;border-radius:0 0 var(--r2) var(--r2)}
+.panel.show{display:block}
+.kp{font-family:ui-monospace,"Cascadia Code","Consolas",monospace;font-size:10.5px;background:var(--bg2);padding:1px 5px;border-radius:4px;color:var(--blue8);margin:1px 2px;display:inline-block;white-space:nowrap}
+.pill{display:inline-block;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:500}
+.p-g{background:var(--green50);color:var(--green8)}
+.p-r{background:var(--coral50);color:var(--coral8)}
+.p-b{background:var(--blue50);color:var(--blue8)}
+.p-p{background:var(--pink50);color:var(--pink8)}
+.t1-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.t1-table th,.t1-table td{padding:11px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.t1-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.t1-table tr:last-child td{border-bottom:none}
+.t1-table tr:nth-child(even) td{background:#fafaf7}
+.t1-table .row-label{font-weight:500;color:var(--purple8);font-size:12px}
+.t1-table .row-sub{font-size:11px;color:var(--t3)}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.kcard{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.kcard h3{font-size:13px;font-weight:500;color:var(--purple8);margin-bottom:8px;padding-bottom:6px;border-bottom:.5px solid var(--bd)}
+.kcard .row{font-size:11.5px;color:var(--t2);line-height:1.7;margin-bottom:6px}
+.kcard .row .label{display:inline-block;min-width:56px;color:var(--t3);font-size:11px}
+.soft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px;margin-top:24px}
+.soft-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.soft-card .sc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.soft-card .sc-name{font-weight:500;font-size:13.5px;color:var(--purple8)}
+.soft-card .sc-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.soft-card .sc-body b{color:var(--t1)}
+.soft-card .sc-scene{background:var(--bg);border:.5px solid var(--bd);border-radius:6px;padding:8px 10px;margin:8px 0;font-size:11px}
+.soft-card .sc-scene .scl{font-size:10px;color:var(--purple);font-weight:500;margin-bottom:3px;display:block}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}
+.skill-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px}
+.sk-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.sk-name{font-weight:500;font-size:13.5px;color:var(--purple8)}
+.sk-level{font-size:10.5px;padding:2px 7px;border-radius:999px;font-weight:500}
+.lv0{background:var(--coral50);color:var(--coral8)}
+.lv1{background:var(--amber50);color:var(--amber8)}
+.lv2{background:var(--blue50);color:var(--blue8)}
+.sk-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.sk-body b{color:var(--t1)}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.rm-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px}
+.rm-card .mon{font-weight:500;font-size:12px;color:var(--purple);margin-bottom:8px}
+.rm-card .item{font-size:11.5px;color:var(--t2);line-height:1.6}
+.section-h{margin:28px 0 12px;font-size:13px;font-weight:500;color:var(--t3);text-transform:uppercase;letter-spacing:1px}
+.section-h:first-child{margin-top:0}
+.heat-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.heat-table th,.heat-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.heat-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.heat-table tr:last-child td{border-bottom:none}
+.heat-table tr:nth-child(even) td{background:#fafaf7}
+.pr-c{background:var(--coral50);color:var(--coral8)}
+.pr-h{background:var(--amber50);color:var(--amber8)}
+.pr-m{background:var(--blue50);color:var(--blue8)}
+.pr-l{background:#ECECEC;color:#6b6b6b}
+.tp{display:inline-block;font-size:9.5px;padding:0 5px;border-radius:4px;background:var(--bg2);color:var(--t3);border:.5px solid var(--bd);margin-left:4px}
+.study-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.study-table th,.study-table td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.study-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.study-table tr:last-child td{border-bottom:none;font-weight:500;color:var(--purple8);background:var(--bg2)}
+.study-table tr:nth-child(even) td{background:#fafaf7}
+.sk-res{margin-top:8px;font-size:11px;line-height:1.7}
+.sk-res .rs-l{font-size:10px;color:var(--t3);margin-bottom:2px;display:block}
+.sk-res a{color:var(--blue8);text-decoration:none;border-bottom:1px solid var(--blue50)}
+.sk-res a:hover{color:var(--purple)}
+/* ===== Tab4 求职机会 ===== */
+.job-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.job-table th,.job-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.job-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.job-table tr:last-child td{border-bottom:none}
+.job-table tr:nth-child(even) td{background:#fafaf7}
+.job-co{font-weight:500;color:var(--purple8);font-size:12px}
+.job-ro{font-size:10.5px;color:var(--t3);margin-top:3px}
+.job-ro a{color:var(--blue8);text-decoration:none;border-bottom:1px solid var(--blue50)}
+.rk{font-weight:500;color:var(--purple);font-size:12px}
+.verify{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:4px;font-weight:500;white-space:nowrap;margin-left:4px;vertical-align:middle}
+.v-site{background:var(--teal50);color:var(--teal8)}
+.v-boss{background:var(--green50);color:var(--green8)}
+.v-zl{background:var(--blue50);color:var(--blue8)}
+.v-other{background:#ECECEC;color:#6b6b6b}
+.match{display:flex;align-items:center;gap:6px}
+.match-bar{flex:1;height:7px;background:var(--bg2);border-radius:999px;overflow:hidden;min-width:54px}
+.match-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--purple));border-radius:999px}
+.match-n{font-size:10.5px;color:var(--t2);min-width:30px;text-align:right}
+.dl{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:500;white-space:nowrap}
+.dl-urgent{background:var(--coral50);color:var(--coral8)}
+.dl-soon{background:var(--amber50);color:var(--amber8)}
+.dl-ok{background:#ECECEC;color:#6b6b6b}
+.risk{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;font-weight:500;white-space:nowrap}
+.risk-low{background:var(--green50);color:var(--green8)}
+.risk-mid{background:var(--amber50);color:var(--amber8)}
+.risk-high{background:var(--coral50);color:var(--coral8)}
+.filtered td{color:var(--t3)}
+.filtered .job-co{color:var(--t2)}
+.note-line{font-size:10.5px;color:var(--t3);margin-top:7px;line-height:1.5;max-width:920px}
+/* ===== 薪资参考 / JD可信度 / 待核 ===== */
+.salary-box{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;font-size:11.5px;color:var(--t2);line-height:1.6;margin-top:4px}
+.salary-box b{color:var(--t1)}
+.salary-box .sal-num{font-size:15px;font-weight:500;color:var(--purple8);margin:0 2px}
+.salary-box .sal-src{font-size:10px;color:var(--t3);margin-top:4px;display:block}
+.pr-u{background:#ECECEC;color:#6b6b6b}
+.risk-u{background:#ECECEC;color:#6b6b6b}
+.jd-badge{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:4px;font-weight:500;margin-left:4px;vertical-align:middle}
+.jd-high{background:var(--green50);color:var(--green8)}
+.jd-mid{background:var(--amber50);color:var(--amber8)}
+.jd-low{background:#ECECEC;color:#6b6b6b}
+/* ===== Tab5 简历优化 ===== */
+.align-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px}
+.align-table th,.align-table td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:.5px solid var(--bd);line-height:1.5}
+.align-table th{background:var(--bg2);font-weight:500;color:var(--purple8);font-size:11px;white-space:nowrap}
+.align-table tr:last-child td{border-bottom:none}
+.align-table tr:nth-child(even) td{background:#fafaf7}
+.align-strong{background:var(--green50);color:var(--green8)}
+.align-weak{background:var(--amber50);color:var(--amber8)}
+.align-gap{background:var(--coral50);color:var(--coral8)}
+.star-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-top:12px}
+.star-card .sc-role{font-weight:500;font-size:13px;color:var(--purple8);margin-bottom:8px}
+.star-row{display:flex;gap:8px;margin:6px 0;font-size:11.5px;line-height:1.5}
+.star-badge{flex:0 0 22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:11px;color:#fff}
+.sb-s{background:var(--purple)}.sb-t{background:var(--blue)}.sb-a{background:var(--teal)}.sb-r{background:var(--amber)}
+.star-row .star-c{flex:1;color:var(--t2)}
+.star-row .star-c b{color:var(--t1)}
+.resume-before{background:var(--bg3);border-left:3px solid var(--t3);padding:8px 10px;border-radius:0 6px 6px 0;font-size:11px;color:var(--t3);margin:8px 0;line-height:1.5}
+.resume-after{background:var(--green50);border-left:3px solid var(--green);padding:8px 10px;border-radius:0 6px 6px 0;font-size:11.5px;color:var(--green8);margin:8px 0;line-height:1.6}
+.resume-after b{color:var(--green8)}
+.resume-weak{color:var(--amber8);font-size:10.5px;margin:4px 0 2px}
+.gap-card{background:var(--bg2);border:.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-top:12px}
+.gap-card .gc-h{font-weight:500;font-size:13px;color:var(--coral8);margin-bottom:6px}
+.gap-card .gc-body{font-size:11.5px;color:var(--t2);line-height:1.55}
+.gap-card .gc-link{font-size:10.5px;color:var(--purple);margin-top:6px;display:block}
+.opt-resume{background:var(--bg);border:.5px solid var(--bd);border-radius:var(--r);padding:16px;font-size:11.5px;color:var(--t1);line-height:1.7;white-space:pre-wrap;margin-top:4px}
+.opt-resume h4{font-size:12px;color:var(--purple8);font-weight:500;margin:12px 0 4px}
+@media(max-width:720px){
+  body{padding:12px}
+  .panel{padding:14px}
+  .t1-table,.t1-table thead,.t1-table tbody,.t1-table th,.t1-table td,.t1-table tr{display:block}
+  .t1-table thead{display:none}
+  .t1-table tr{margin-bottom:12px;border:.5px solid var(--bd);border-radius:var(--r);padding:12px;background:var(--bg)}
+  .t1-table td{border:none;padding:4px 0}
+  .t1-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .tabs button{font-size:13px;padding:8px}
+  .roadmap{grid-template-columns:1fr}
+  .heat-table,.heat-table thead,.heat-table tbody,.heat-table th,.heat-table td,.heat-table tr{display:block}
+  .heat-table thead{display:none}
+  .heat-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .heat-table td{border:none;padding:4px 0}
+  .heat-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .study-table,.study-table thead,.study-table tbody,.study-table th,.study-table td,.study-table tr{display:block}
+  .study-table thead{display:none}
+  .study-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .study-table td{border:none;padding:4px 0}
+  .study-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .job-table,.job-table thead,.job-table tbody,.job-table th,.job-table td,.job-table tr{display:block}
+  .job-table thead{display:none}
+  .job-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .job-table td{border:none;padding:4px 0}
+  .job-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+  .align-table,.align-table thead,.align-table tbody,.align-table th,.align-table td,.align-table tr{display:block}
+  .align-table thead{display:none}
+  .align-table tr{margin-bottom:10px;border:.5px solid var(--bd);border-radius:var(--r);padding:10px;background:var(--bg)}
+  .align-table td{border:none;padding:4px 0}
+  .align-table td:before{content:attr(data-label);color:var(--t3);font-size:10px;display:block;margin-bottom:2px;font-weight:500}
+}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="header">
+  <h1><!-- SECTION: JOB_TITLE2 -->数据运营<!-- END: JOB_TITLE2 --></h1>
+  <span class="tag">能力分析</span>
+</div>
+<div class="tabs">
+  <button class="on" onclick="sw(0)">匹配</button>
+  <button onclick="sw(1)">知识</button>
+  <button onclick="sw(2)">提升</button>
+  <button onclick="sw(3)">求职</button>
+  <button onclick="sw(4)">简历</button>
+</div>
+
+<!-- TAB 1 -->
+<div class="panel show" id="p0">
+<table class="t1-table">
+<thead><tr><th style="width:13%">职责</th><th style="width:22%">知识点</th><th style="width:39%">怎么用</th><th style="width:26%">练什么</th></tr></thead>
+<tbody>
+<!-- SECTION: TABLE_ROWS -->
+<!-- Each row: <tr> with row-label + kp tags + color pills (p-g/p-r/p-b/p-p) + scene-text + project-text -->
+<!-- END: TABLE_ROWS -->
+</tbody>
+</table>
+<div class="section-h">薪资参考 · 市场区间</div>
+<!-- SECTION: SALARY -->
+<!-- salary box: market range + percentile; JD 无薪资时整块留空省略 -->
+<!-- END: SALARY -->
+<div class="section-h">JD 来源</div>
+<!-- SECTION: JD_META -->
+<!-- one-line: JD 来源可信度 badge (jd-high/jd-mid/jd-low) + 获取方式 -->
+<!-- END: JD_META -->
+</div>
+
+<!-- TAB 2 -->
+<div class="panel" id="p1">
+<div class="section-h">硬技能</div>
+<div class="kgrid">
+<!-- SECTION: HARD_SKILLS -->
+<!-- 6 kcards: 数据获取/数据处理/分析与建模/可视化/数据工程/工具链 -->
+<!-- Each: h3 title + .row with .label + .kp + color pill -->
+<!-- END: HARD_SKILLS -->
+</div>
+<div class="section-h">软技能</div>
+<div class="soft-grid">
+<!-- SECTION: SOFT_SKILLS -->
+<!-- 5-6 soft-cards: sc-head(sc-name + color pill) + sc-body with sc-scene -->
+<!-- Each sc-scene must have .scl="现在就能练" with student-accessible scenarios -->
+<!-- END: SOFT_SKILLS -->
+</div>
+</div>
+
+<!-- TAB 3 -->
+<div class="panel" id="p2">
+<div class="section-h">差距优先热力图</div>
+<table class="heat-table">
+<thead><tr><th style="width:14%">优先级</th><th style="width:34%">技能 · 领域</th><th style="width:16%">类型</th><th style="width:36%">来源</th></tr></thead>
+<tbody>
+<!-- SECTION: HEATMAP_ROWS -->
+<!-- Each row: priority pill (pr-c/pr-h/pr-m/pr-l) + area text + type tag .tp + source text -->
+<!-- Example: <tr><td data-label="优先级"><span class="pill pr-c">Critical</span></td><td data-label="技能·领域">Kubernetes <span class="kp">kubectl</span></td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="来源">4/5 岗位，权重 3.2</td></tr> -->
+<!-- END: HEATMAP_ROWS -->
+</tbody>
+</table>
+<div class="section-h">P0 · 面试前必须补</div>
+<div class="skill-grid">
+<!-- SECTION: P0_SKILLS -->
+<!-- 2-3 skill-cards: sk-head(sk-name + lv0) + sk-body -->
+<!-- END: P0_SKILLS -->
+</div>
+<div class="section-h">P1 · 面试加分项</div>
+<div class="skill-grid">
+<!-- SECTION: P1_SKILLS -->
+<!-- 2-3 skill-cards: sk-head(sk-name + lv1) + sk-body -->
+<!-- END: P1_SKILLS -->
+</div>
+<div class="section-h">P2 · 工作中积累</div>
+<div class="skill-grid">
+<!-- SECTION: P2_SKILLS -->
+<!-- 3-4 skill-cards: sk-head(sk-name + lv2) + sk-body -->
+<!-- END: P2_SKILLS -->
+</div>
+<div class="section-h">3 个月路线</div>
+<div class="roadmap">
+<!-- SECTION: ROADMAP -->
+<!-- 3 rm-cards: .mon + .item -->
+<!-- END: ROADMAP -->
+</div>
+<div class="section-h">学习顺序</div>
+<table class="study-table">
+<thead><tr><th style="width:6%">#</th><th style="width:30%">主题</th><th style="width:14%">类型</th><th style="width:14%">预计耗时</th><th style="width:36%">备注</th></tr></thead>
+<tbody>
+<!-- SECTION: STUDY_ORDER -->
+<!-- Each row: # / theme / type tag .tp / est time / dependency note. Last row: 总耗时 -->
+<!-- Example: <tr><td data-label="#">1</td><td data-label="主题">Kubernetes</td><td data-label="类型">硬<span class="tp">Hard</span></td><td data-label="预计耗时">~20h</td><td data-label="备注">学 AWS EKS 前必学</td></tr> -->
+<!-- END: STUDY_ORDER -->
+</tbody>
+</table>
+</div>
+
+<!-- TAB 4 -->
+<div class="panel" id="p3">
+<div class="section-h">匹配岗位清单 · 按综合优先级排序</div>
+<table class="job-table">
+<thead><tr><th style="width:5%">#</th><th style="width:25%">公司 · 来源</th><th style="width:18%">岗位</th><th style="width:17%">匹配度</th><th style="width:10%">规模</th><th style="width:13%">截止</th><th style="width:12%">风险</th></tr></thead>
+<tbody>
+<!-- SECTION: JOBLIST_ROWS -->
+<!-- Each row: rank # + company(name + verify badge) + role + match bar + size + deadline pill + risk pill -->
+<!-- Example:
+<tr>
+<td data-label="#">1</td>
+<td data-label="公司·来源"><span class="job-co">字节跳动</span><span class="verify v-site">官网校招</span><div class="job-ro"><a href="https://jobs.bytedance.com" target="_blank">jobs.bytedance.com</a></div></td>
+<td data-label="岗位">数据分析师（校招）</td>
+<td data-label="匹配度"><div class="match"><div class="match-bar"><div class="match-fill" style="width:82%"></div></div><span class="match-n">82%</span></div></td>
+<td data-label="规模">11万+</td>
+<td data-label="截止"><span class="dl dl-ok">2026-09-30</span></td>
+<td data-label="风险"><span class="risk risk-low">低</span></td>
+</tr>
+-->
+<!-- END: JOBLIST_ROWS -->
+</tbody>
+</table>
+<div class="note-line">所有链接均来自企业官网/官方校招公告或 BOSS直聘/智联招聘等持牌平台，已做反向验证（域名与来源一致、页面可打开）。排序：匹配度降序 → 公司规模降序 → 招聘截止时间升序。</div>
+
+<div class="section-h">公司风险核查</div>
+<table class="job-table">
+<thead><tr><th style="width:20%">公司</th><th style="width:12%">成立时间</th><th style="width:12%">参保人数</th><th style="width:12%">劳动仲裁</th><th style="width:14%">其他风险</th><th style="width:8%">风险</th><th style="width:22%">结论 · 建议</th></tr></thead>
+<tbody>
+<!-- SECTION: RISK_ROWS -->
+<!-- Each row: company + est year + social security headcount + labor arbitration + other risk + risk pill(含risk-u待核) + neutral one-line conclusion -->
+<!-- Example:
+<tr>
+<td data-label="公司"><span class="job-co">字节跳动</span></td>
+<td data-label="成立时间">2012</td>
+<td data-label="参保人数">约 10 万</td>
+<td data-label="劳动仲裁">近2年 3 起（已结案）</td>
+<td data-label="其他风险">无</td>
+<td data-label="风险"><span class="risk risk-low">低</span></td>
+<td data-label="结论·建议">规模稳定、争议量少，可投递</td>
+</tr>
+<tr>
+<td data-label="公司"><span class="job-co">某初创公司</span></td>
+<td data-label="成立时间">待核</td>
+<td data-label="参保人数">待核</td>
+<td data-label="劳动仲裁">待核</td>
+<td data-label="其他风险">待核</td>
+<td data-label="风险"><span class="risk risk-u">待核</span></td>
+<td data-label="结论·建议">公开数据缺失，请自行核实</td>
+</tr>
+-->
+<!-- END: RISK_ROWS -->
+</tbody>
+</table>
+<div class="note-line">风险数据来自公开渠道（国家企业信用信息公示系统 / 企查查 / 天眼查 / 中国裁判文书网），可能滞后或不全，仅供参考，投递前请自行核实。</div>
+
+<div class="section-h">已筛除 · 不推荐投递</div>
+<table class="job-table filtered">
+<thead><tr><th style="width:32%">公司 · 岗位</th><th style="width:68%">筛除原因</th></tr></thead>
+<tbody>
+<!-- SECTION: FILTERED_ROWS -->
+<!-- Each row: company/role + reason (成立<1年且参保0 / 劳动争议密集 / 经营异常等) -->
+<!-- Example:
+<tr><td data-label="公司·岗位"><span class="job-co">某初创公司</span> · 运营岗</td><td data-label="筛除原因">成立 8 个月、参保人数 0，劳动争议开庭公告 6 起 → 高风险，已筛除</td></tr>
+-->
+<!-- END: FILTERED_ROWS -->
+</tbody>
+</table>
+<div class="note-line">筛除基于公开风险信号，仅作辅助判断；若你仍想投递，可手动在上方清单外自行跟进。</div>
+</div>
+
+<!-- TAB 5 -->
+<div class="panel" id="p4">
+<div class="section-h">JD 要求 × 简历证据 · 对齐总览</div>
+<table class="align-table">
+<thead><tr><th style="width:30%">JD 要求</th><th style="width:34%">简历证据</th><th style="width:14%">状态</th><th style="width:22%">STAR 可用</th></tr></thead>
+<tbody>
+<!-- SECTION: RESUME_ALIGN -->
+<!-- Each row: JD requirement + resume evidence + status pill(align-strong/align-weak/align-gap) + STAR usable ✓/△/— -->
+<!-- Example:
+<tr>
+<td data-label="JD要求"><span class="kp">来店接待</span> 主动微笑接待</td>
+<td data-label="简历证据">罗湖大兴 1 月实习，负责到店客户接待与咨询解答</td>
+<td data-label="状态"><span class="pill align-strong">强证据</span></td>
+<td data-label="STAR可用">✓ 可重写</td>
+</tr>
+-->
+<!-- END: RESUME_ALIGN -->
+</tbody>
+</table>
+<div class="section-h">STAR 重写 · 把经历改成简历亮点</div>
+<!-- SECTION: STAR_REWRITE -->
+<!-- 2-4 star-cards; each: sc-role + resume-before(original) + 4 star-rows(S/T/A/R with badge) + resume-after(optimized bullet); weak evidence adds .resume-weak 补强建议 -->
+<!-- END: STAR_REWRITE -->
+<div class="section-h">缺口桥接 · 把"没有"变成"在补"</div>
+<!-- SECTION: GAP_BRIDGE -->
+<!-- 2-4 gap-cards; each: gc-h(gap item) + gc-body(bridge suggestion) + gc-link(回链 Tab3 编号) -->
+<!-- END: GAP_BRIDGE -->
+<div class="section-h">优化后简历 · 可一键复制</div>
+<!-- SECTION: OPT_RESUME -->
+<!-- clean copyable optimized resume block (.opt-resume) -->
+<!-- END: OPT_RESUME -->
+</div>
+
+</div>
+<script>
+function sw(n){
+  document.querySelectorAll('.tabs button').forEach(function(b,i){b.classList.toggle('on',i===n)});
+  document.querySelectorAll('.panel').forEach(function(p,i){p.classList.toggle('show',i===n)});
+}
+</script>
+</body>
+</html>
